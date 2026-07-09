@@ -1,41 +1,44 @@
-function bingoApp() {
-    return {
-        wordsPool: [],
-        grids: [],
-        selectedCategory: '',
+import Alpine from 'alpinejs';
 
-        // 1. Fetch data from your GitHub Pages static JSON paths
-        async loadCategory(category) {
-            this.selectedCategory = category;
-            try {
-                const response = await fetch(`./wordlist/${category}.json`);
-                this.wordsPool = await response.json();
-            } catch (error) {
-                console.error("Failed to load wordlist:", error);
+const lists = import.meta.glob('./wordlist/*.json', { eager: true });
+
+Alpine.data('bingoApp', () => ({
+    wordsPool: [],
+    grids: [],
+    selectedCategory: '',
+
+    loadCategory(category) {
+        this.selectedCategory = category;
+        const path = `./wordlist/${category}.json`;
+
+        if (lists[path]) {
+            this.wordsPool = lists[path].default;
+        } else {
+            console.error("List not found:", path);
+        }
+    },
+
+    generateGrids(count) {
+        if (this.wordsPool.length < 24) {
+            alert("You need at least 24 words!");
+            return;
+        }
+
+        this.grids = [];
+        for (let i = 0; i < count; i++) {
+            let shuffled = [...this.wordsPool];
+            for (let j = shuffled.length - 1; j > 0; j--) {
+                const k = Math.floor(Math.random() * (j + 1));
+                [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
             }
-        },
 
-        generateGrids(count) {
-            if (this.wordsPool.length < 24) {
-                alert("You need at least 24 words in your JSON file!");
-                return;
-            }
+            let cardWords = shuffled.slice(0, 24);
+            cardWords.splice(12, 0, "🔥 FREE SPACE 🔥");
 
-            this.grids = [];
-            for (let i = 0; i < count; i++) {
-                // 2. Fisher-Yates Shuffle Logic
-                let shuffled = [...this.wordsPool];
-                for (let j = shuffled.length - 1; j > 0; j--) {
-                    const k = Math.floor(Math.random() * (j + 1));
-                    [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
-                }
-
-                // 3. Take 24 words and inject the center Free Space
-                let cardWords = shuffled.slice(0, 24);
-                cardWords.splice(12, 0, "🔥 FREE SPACE 🔥");
-
-                this.grids.push(cardWords);
-            }
+            this.grids.push(cardWords);
         }
     }
-}
+}));
+
+// Start Alpine automatically
+Alpine.start();
