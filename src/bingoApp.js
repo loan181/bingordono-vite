@@ -3,6 +3,7 @@ import Alpine from 'alpinejs';
 const lists = import.meta.glob('./wordlist/*.json', { eager: true });
 
 Alpine.data('bingoApp', () => ({
+    grid_size: 3,
     wordsPool: [],
     grids: [],
     selectedCategory: '',
@@ -19,8 +20,10 @@ Alpine.data('bingoApp', () => ({
     },
 
     generateGrids(count) {
-        if (this.wordsPool.length < 24) {
-            alert("You need at least 24 words!");
+        const total_cell = this.grid_size*this.grid_size
+        const real_cell = total_cell - 1 // 1 free cell in the center
+        if (this.wordsPool.length < real_cell) {
+            alert(`You need at least ${real_cell} words!`);
             return;
         }
 
@@ -32,8 +35,8 @@ Alpine.data('bingoApp', () => ({
                 [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
             }
 
-            let cardWords = shuffled.slice(0, 24);
-            cardWords.splice(12, 0, "🔥 FREE SPACE 🔥");
+            let cardWords = shuffled.slice(0, real_cell);
+            cardWords.splice(real_cell/2, 0, "🔥 FREE SPACE 🔥");
 
             this.grids.push(cardWords);
         }
