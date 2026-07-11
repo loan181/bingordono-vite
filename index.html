@@ -16,7 +16,7 @@
   <label for="category">Choisir un thème :</label>
   <select id="category" @change="loadCategory($event.target.value)">
     <option value="words_compendium">Compendium</option>
-    <option value="words_generic_larp">words_generic_larp.json</option>
+    <option value="words_generic_larp">Generic LARP</option>
   </select>
 
   <button @click="generateGrids(12)" :disabled="!selectedCategory">Générer 12 grilles</button>
