@@ -3,6 +3,10 @@ import Alpine from 'alpinejs';
 const lists = import.meta.glob('./wordlist/*.json', { eager: true });
 const verses = import.meta.glob('./verse/*.json', { eager: true });
 
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
 Alpine.data('bingoApp', () => ({
     grid_size: 4,
     wordsPools: {},
@@ -10,11 +14,12 @@ Alpine.data('bingoApp', () => ({
     grids: [],
 
     init() {
-        const versePath = './verse/verse_tircé.json';
-        if (verses[versePath]) {
-            this.versePool = verses[versePath].default;
-        } else {
-            console.error("Verse file not found:", versePath);
+        for (const path in verses) {
+            const follower = capitalizeFirstLetter(path.split('/').pop().replace('verse_', '').replace('.json', ''));
+            this.versePool.push({
+                follower,
+                verses: verses[path].default
+            });
         }
 
         for (const path in lists) {
@@ -43,13 +48,16 @@ Alpine.data('bingoApp', () => ({
                 console.warn("The occurence of categories does not match the number of bingo cells");
             }
             
-            // Hardcoded positions/counts
-
-            let randomVerse = this.versePool[Math.floor(Math.random() * this.versePool.length)];
+            const randomFollower = this.versePool[Math.floor(Math.random() * this.versePool.length)];
+            const verseIndex = Math.floor(Math.random() * randomFollower.verses.length);
+            const verseText = randomFollower.verses[verseIndex];
+            const chapter = verseIndex + 1;
+            const verse = Math.floor(Math.random() * 20) + 1;
+            const verseAttribution = `${randomFollower.follower} ${chapter}:${verse}`;
 
             this.grids.push({
                 words: cardWords.sort(() => 0.5 - Math.random()), // Shuffle the final word list
-                verse: randomVerse
+                verse: `"${verseText}" - ${verseAttribution}`
             });
         }
     },
