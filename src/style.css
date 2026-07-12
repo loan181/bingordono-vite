@@ -25,7 +25,7 @@ body {
     /* Layer texture over the purple background and blend them */
     background:
         url('/src/assets/paper_rotated.webp'),
-        #900090;
+        #5e005e;
     background-size: cover, auto;
     background-blend-mode: overlay; /* Changed to overlay for a balanced look */
     border: 3px solid #FFD700;
@@ -61,9 +61,10 @@ body {
     justify-content: center;
     text-align: center;
     padding: 5px;
-    font-size: 13px;
+    font-size: 14px;
     word-break: break-word;
     color: #FFD700;
+    text-shadow: 1px 1px 2px black;
 }
 
 .center-block {
@@ -119,7 +120,8 @@ body {
     }
     .bingo-cell {
         color: #FFD700 !important;
-        font-size: 10pt;
+        font-size: 11pt;
+        text-shadow: 1px 1px 2px black;
     }
     .center-block {
         background-image: url('/src/assets/logo.png') !important;
