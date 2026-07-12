@@ -10,7 +10,7 @@ Alpine.data('bingoApp', () => ({
     grids: [],
 
     init() {
-        const versePath = './verse/verse.json';
+        const versePath = './verse/verse_tircé.json';
         if (verses[versePath]) {
             this.versePool = verses[versePath].default;
         } else {

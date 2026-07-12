@@ -35,12 +35,15 @@ body {
     width: 100%;
     box-sizing: border-box;
     page-break-inside: avoid;
+    display: flex;
+    flex-direction: column;
 }
 
 .bingo-card-header {
     text-align: center;
     font-size: 22px;
     font-weight: bold;
+    margin-top: 10px; /* Lower the title a bit */
     margin-bottom: 15px;
     color: #FFD700;
     text-transform: uppercase;
@@ -73,20 +76,18 @@ body {
     background-image: url('/src/assets/logo.png');
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
     border: none;
 }
 
 .verse {
     font-style: italic;
-    font-size: 14px;
-    text-align: center;
-    padding: 5px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    padding: 10px 0;
+    color: #FFD700;
+    margin-top: 15px;
+    background-color: transparent;
+    border: none;
 }
 
 @media print {
@@ -137,8 +138,10 @@ body {
         -webkit-print-color-adjust: exact;
     }
     .verse {
-        font-size: 9pt;
-        color: white !important;
-        background-color: rgba(0, 0, 0, 0.5) !important;
+        font-size: 11pt;
+        text-align: left;
+        color: #FFD700 !important;
+        background-color: transparent !important;
+        border: none !important;
     }
 }
