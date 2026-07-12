@@ -22,7 +22,12 @@ body {
 }
 
 .bingo-card {
-    background-color: #900090;
+    /* Layer texture over the purple background and blend them */
+    background:
+        url('/src/assets/paper_rotated.webp'),
+        #900090;
+    background-size: cover, auto;
+    background-blend-mode: overlay; /* Changed to overlay for a balanced look */
     border: 3px solid #FFD700;
     padding: 15px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
@@ -101,8 +106,10 @@ body {
         gap: 1cm;
     }
     .bingo-card {
+        background: url('/src/assets/paper_rotated.webp'), #900090 !important;
+        background-size: cover, auto !important;
+        background-blend-mode: overlay !important; /* Changed to overlay */
         border: 2px solid black !important;
-        background-color: #900090 !important;
         color: #FFD700 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
