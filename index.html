@@ -10,14 +10,7 @@
 <body x-data="bingoApp()" x-init="init()">
 
 <div class="control-panel no-print">
-    <label for="category">Choisir un thème :</label>
-    <select id="category" @change="loadCategory($event.target.value)">
-        <option value="" disabled selected>-- Choisir --</option>
-        <option value="words_compendium">Compendium</option>
-        <option value="words_generic_larp">Generic LARP</option>
-    </select>
-
-    <button @click="generateGrids(4)" :disabled="!selectedCategory">Générer 4 grilles</button>
+    <button @click="generateGrids(4)">Générer 4 grilles</button>
     <button @click="window.print()" :disabled="grids.length === 0">Imprimer</button>
 </div>
 

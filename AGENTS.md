@@ -1,7 +1,7 @@
 Bingo project in french (the code is in english)
 The grid is 4x4 grid
 All tiles on the side are filled with a word from one of the wordlist/*.json files
-The 2x2 center tiles are replaced by the src/assets/logo file and a sentence from src/verse
+The 2x2 center tiles are replaced by the src/assets/logo file and a sentence from src/verse in front of the image
 The context is for a Live Action Role Playing (LARP) game in medieval time
 The bingo will be used in a LARP religious context on which the "god"/priest called "Gordono" holds a mass
 The followers (the ones attempting the mass) will receive one grid in exchange for one resource
