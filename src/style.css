@@ -91,20 +91,29 @@ body {
 
 @media print {
     body {
+        /* Use flex to center the bingo container on the page */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0;
         background: none;
+        /* Ensure body takes full page height for centering */
+        height: 100vh;
     }
     .no-print { display: none !important; }
     @page {
         size: A4;
-        margin: 1cm;
+        /* Remove margins to use the full page for A6 sizing */
+        margin: 0;
     }
     #bingo-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        width: 100%;
-        gap: 1cm;
+        /* A4 is 210mm x 297mm. This makes the container fit perfectly. */
+        width: 210mm;
+        height: 297mm;
+        gap: 0; /* Remove gap for easy cutting */
     }
     .bingo-card {
         background: url('/src/assets/paper_rotated.webp'), #900090 !important;
