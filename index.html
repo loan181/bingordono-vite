@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bingo de Gordono</title>
+    <title>BinGordono</title>
     <link rel="stylesheet" href="src/style.css">
     <script type="module" src="/src/bingoApp.js"></script>
 </head>
@@ -17,7 +17,7 @@
 <div id="bingo-container">
     <template x-for="(grid, gridIndex) in grids" :key="gridIndex">
         <div class="bingo-card">
-            <div class="bingo-card-header" x-text="'BINGO DE GORDONO #' + (gridIndex + 1)"></div>
+            <div class="bingo-card-header" x-text="'BinGordono #' + (gridIndex + 1)"></div>
             <div class="bingo-grid-4x4">
                 <template x-for="(word, i) in grid.words" :key="i">
                     <div class="bingo-cell" :style="getGridArea(i)">
