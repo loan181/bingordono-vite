@@ -25,13 +25,14 @@ body {
 }
 
 .bingo-card {
-    background-color: #fdfaf3;
+    background-color: #900090; /* Purple */
     background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
-    border: 3px solid #8a6c5a; /* Ornate-looking border */
+    border: 3px solid #FFD700; /* Gold */
     padding: 20px;
     width: 450px; /* Fixed width for consistency */
     box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     border-radius: 3px;
+    color: #FFD700; /* Gold text */
 }
 
 .bingo-card-header {
@@ -39,19 +40,19 @@ body {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #5a3d3a;
+    color: #FFD700; /* Gold */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 .bingo-grid-3x3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 2px solid #8a6c5a;
+    grid-template-columns: repeat(3, 1fr); /* Corrected to 3x3 */
+    border: 2px solid #FFD700; /* Gold */
 }
 
 .bingo-cell {
-    border: 1px solid #c5a992; /* Lighter, softer border */
+    border: 1px solid #FFD700; /* Gold */
     aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
@@ -62,12 +63,13 @@ body {
     font-weight: normal;
     word-break: break-word;
     line-height: 1.2;
+    color: #FFD700; /* Gold text */
 }
 
 .bingo-cell:nth-child(5) { /* The "FREE SPACE" cell */
     font-weight: bold;
     font-size: 18px;
-    color: #990000; /* A deep, royal red */
+    color: #FFD700; /* Gold */
 }
 
 
@@ -91,9 +93,12 @@ body {
         height: 90vh;
         margin: 5% auto;
         box-shadow: none;
+        background-color: #900090 !important; /* Purple for printing */
+        color: #FFD700 !important; /* Gold text for printing */
     }
     .bingo-cell {
         font-size: 20px; /* Larger font for readability */
         border-color: #333;
+        color: #FFD700 !important; /* Gold text for printing */
     }
 }

@@ -3,7 +3,7 @@ import Alpine from 'alpinejs';
 const lists = import.meta.glob('./wordlist/*.json', { eager: true });
 
 Alpine.data('bingoApp', () => ({
-    grid_size: 3,
+    grid_size: 4,
     wordsPool: [],
     grids: [],
     selectedCategory: '',
