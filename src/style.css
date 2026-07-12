@@ -2,103 +2,126 @@
 
 body {
     font-family: 'MedievalSharp', cursive, sans-serif;
-    background-color: #f3f0e8; /* Parchment paper color */
-    background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+    background-color: #f3f0e8;
     margin: 20px;
-    color: #4a2c2a; /* Dark brown text */
+    color: #4a2c2a;
 }
 
 .control-panel {
-    background: rgba(239, 229, 212, 0.8); /* Semi-transparent parchment */
+    background: rgba(239, 229, 212, 0.8);
     padding: 20px;
     border: 2px solid #8a6c5a;
-    border-radius: 0;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #bingo-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .bingo-card {
-    background-color: #900090; /* Purple */
-    background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
-    border: 3px solid #FFD700; /* Gold */
-    padding: 20px;
-    width: 450px; /* Fixed width for consistency */
+    background-color: #900090;
+    border: 3px solid #FFD700;
+    padding: 15px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-    border-radius: 3px;
-    color: #FFD700; /* Gold text */
+    color: #FFD700;
+    width: 100%;
+    box-sizing: border-box;
+    page-break-inside: avoid;
 }
 
 .bingo-card-header {
     text-align: center;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: #FFD700; /* Gold */
+    margin-bottom: 15px;
+    color: #FFD700;
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
-.bingo-grid-3x3 {
+.bingo-grid-4x4 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Corrected to 3x3 */
-    border: 2px solid #FFD700; /* Gold */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    border: 2px solid #FFD700;
+    aspect-ratio: 1 / 1;
 }
 
 .bingo-cell {
-    border: 1px solid #FFD700; /* Gold */
-    aspect-ratio: 1 / 1;
+    border: 1px solid #FFD700;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: normal;
+    padding: 5px;
+    font-size: 13px;
     word-break: break-word;
-    line-height: 1.2;
-    color: #FFD700; /* Gold text */
+    color: #FFD700;
 }
 
-.bingo-cell:nth-child(5) { /* The "FREE SPACE" cell */
-    font-weight: bold;
-    font-size: 18px;
-    color: #FFD700; /* Gold */
+.center-block {
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+    background-image: url('/src/assets/logo.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: none;
 }
 
+.verse {
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
 
-/* --- Print Layout Rules --- */
 @media print {
     body {
-        background: none;
         margin: 0;
+        background: none;
     }
-    .no-print {
-        display: none !important;
+    .no-print { display: none !important; }
+    @page {
+        size: A4;
+        margin: 1cm;
     }
     #bingo-container {
-        display: block;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        height: calc(100vh - 2cm);
+        gap: 1cm;
     }
     .bingo-card {
-        page-break-before: always; /* Start each card on a new page */
-        page-break-inside: avoid;
-        border: 4px solid #000 !important; /* Ensure border prints */
-        width: 90%;
-        height: 90vh;
-        margin: 5% auto;
-        box-shadow: none;
-        background-color: #900090 !important; /* Purple for printing */
-        color: #FFD700 !important; /* Gold text for printing */
+        border: 2px solid black !important;
+        background-color: #900090 !important;
+        color: #FFD700 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .bingo-grid-4x4, .bingo-cell {
+        border-color: black !important;
     }
     .bingo-cell {
-        font-size: 20px; /* Larger font for readability */
-        border-color: #333;
-        color: #FFD700 !important; /* Gold text for printing */
+        color: #FFD700 !important;
+        font-size: 10pt;
+    }
+    .center-block {
+        background-image: url('/src/assets/logo.png') !important;
+        -webkit-print-color-adjust: exact;
+    }
+    .verse {
+        font-size: 9pt;
+        color: white !important;
+        background-color: rgba(0, 0, 0, 0.5) !important;
     }
 }

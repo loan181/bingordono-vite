@@ -1,43 +1,42 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bingo Generator</title>
-<!--  <script src="//unpkg.com/alpinejs" defer></script>-->
-
-  <link rel="stylesheet" href="src/style.css">
-  <script type="module" src="/src/bingoApp.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bingo de Gordono</title>
+    <link rel="stylesheet" href="src/style.css">
+    <script type="module" src="/src/bingoApp.js"></script>
 </head>
-<body x-data="bingoApp()">
+<body x-data="bingoApp()" x-init="init()">
 
-<!-- This block vanishes when printing -->
 <div class="control-panel no-print">
-  <label for="category">Choisir un thème :</label>
-  <select id="category" @change="loadCategory($event.target.value)">
-    <option value="words_compendium">Compendium</option>
-    <option value="words_generic_larp">Generic LARP</option>
-  </select>
+    <label for="category">Choisir un thème :</label>
+    <select id="category" @change="loadCategory($event.target.value)">
+        <option value="" disabled selected>-- Choisir --</option>
+        <option value="words_compendium">Compendium</option>
+        <option value="words_generic_larp">Generic LARP</option>
+    </select>
 
-  <button @click="generateGrids(12)" :disabled="!selectedCategory">Générer 12 grilles</button>
-  <button onclick="window.print()" :disabled="grids.length === 0">Imprimer</button>
+    <button @click="generateGrids(4)" :disabled="!selectedCategory">Générer 4 grilles</button>
+    <button @click="window.print()" :disabled="grids.length === 0">Imprimer</button>
 </div>
 
 <div id="bingo-container">
-  <template x-for="(grid, index) in grids" :key="index">
-    <div class="bingo-card">
-      <div class="bingo-card-header" x-text="'Grille #' + (index + 1)"></div>
-
-      <div class="bingo-grid-3x3">
-        <!-- Track item by index to prevent Alpine key collisions if words repeat -->
-        <template x-for="(word, wIndex) in grid" :key="wIndex">
-          <div class="bingo-cell">
-            <span x-text="word"></span>
-          </div>
-        </template>
-      </div>
-    </div>
-  </template>
+    <template x-for="(grid, gridIndex) in grids" :key="gridIndex">
+        <div class="bingo-card">
+            <div class="bingo-card-header" x-text="'BINGO DE GORDONO #' + (gridIndex + 1)"></div>
+            <div class="bingo-grid-4x4">
+                <template x-for="(word, i) in grid.words" :key="i">
+                    <div class="bingo-cell" :style="getGridArea(i)">
+                        <span x-text="word"></span>
+                    </div>
+                </template>
+                <div class="center-block">
+                    <div class="verse"><span x-text="grid.verse"></span></div>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>
 
 </body>
