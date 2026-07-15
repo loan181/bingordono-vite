@@ -2,44 +2,42 @@
 
 :root {
     --primary-color: #900090;
-    --text-color: #FFD700;
+    --text-color: gold;
     --background-color: #f3f0e8;
     --dark-text-color: #4a2c2a;
     --border-color: #8a6c5a;
+    --font-family-main: 'MedievalSharp', cursive, sans-serif;
 }
 
 body {
-    font-family: 'MedievalSharp', cursive, sans-serif;
+    font-family: var(--font-family-main);
     background-color: var(--background-color);
-    margin: 20px;
+    margin: 1.25rem;
     color: var(--dark-text-color);
 }
 
 .control-panel {
     background: rgba(239, 229, 212, 0.8);
-    padding: 20px;
+    padding: 1.25rem;
     border: 2px solid var(--border-color);
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #bingo-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .bingo-card {
-    background:
-        url('/src/assets/paper_rotated.webp'),
-        var(--primary-color);
-    background-size: cover, auto;
+    background: url('/src/assets/paper_rotated.webp') var(--primary-color);
+    background-size: cover;
     background-blend-mode: overlay;
     border: 3px solid var(--text-color);
-    padding: 15px;
+    padding: 1rem;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     color: var(--text-color);
-    width: 100%;
     box-sizing: border-box;
     page-break-inside: avoid;
     display: flex;
@@ -48,10 +46,10 @@ body {
 
 .bingo-card-header {
     text-align: center;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: bold;
-    margin-top: 16px;
-    margin-bottom: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
     text-shadow: 1px 1px 2px black;
 }
@@ -70,8 +68,8 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 5px;
-    font-size: 18px;
+    padding: 0.3125rem;
+    font-size: 1.125rem;
     word-break: break-word;
     text-shadow: 1px 1px 2px black;
 }
@@ -88,10 +86,10 @@ body {
 
 .verse {
     font-style: italic;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: left;
-    padding: 10px 0;
-    margin-top: 15px;
+    padding: 0.625rem 0;
+    margin-top: 1rem;
     background-color: transparent;
     border: none;
     text-shadow: 1px 1px 2px black;
@@ -99,18 +97,19 @@ body {
 
 @media print {
     body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin: 0;
         background: none;
-        height: 100vh;
     }
-    .no-print { display: none; }
+
+    .no-print {
+        display: none;
+    }
+
     @page {
         size: A4;
         margin: 0;
     }
+
     #bingo-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -119,29 +118,36 @@ body {
         height: 297mm;
         gap: 0;
     }
-    .bingo-card, .bingo-grid-4x4, .bingo-cell, .verse {
-        color: var(--text-color) !important;
+
+    .bingo-card {
+        background: url('/src/assets/paper_rotated.webp') var(--primary-color) !important;
+        background-size: cover !important;
+        background-blend-mode: overlay !important;
         border-color: var(--text-color) !important;
-        background-color: transparent !important;
+        color: var(--text-color) !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-    .bingo-card {
-        background: url('/src/assets/paper_rotated.webp'), var(--primary-color) !important;
-        background-size: cover, auto !important;
-        background-blend-mode: overlay !important;
+
+    .bingo-grid-4x4, .bingo-cell {
+        border-color: var(--text-color) !important;
     }
+
     .bingo-cell {
         font-size: 11pt;
         text-shadow: 1px 1px 2px black;
     }
+
     .center-block {
         background-image: url('/src/assets/logo_no-bg.png') !important;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat !important;
+        border-color: var(--text-color) !important;
     }
+
     .verse {
         font-size: 11pt;
         text-align: left;
         text-shadow: 1px 1px 2px black;
+        color: var(--text-color) !important;
     }
 }
