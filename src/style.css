@@ -121,15 +121,16 @@ body {
         background: url('/src/assets/paper_rotated.webp'), #900090 !important;
         background-size: cover, auto !important;
         background-blend-mode: overlay !important; /* Changed to overlay */
-        border: 2px solid black !important;
+        border: 2px solid #FFD700 !important;
         color: #FFD700 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-    .bingo-grid-4x4, .bingo-cell {
-        border-color: black !important;
+    .bingo-grid-4x4 {
+        border-color: #FFD700 !important;
     }
     .bingo-cell {
+        border-color: #FFD700 !important;
         color: #FFD700 !important;
         font-size: 11pt;
         text-shadow: 1px 1px 2px black;

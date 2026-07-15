@@ -17,7 +17,7 @@ The game/project name is "Bingordonno" (pun between bingo and gordono).
 
 Visually, the color theme is:
 Primary: #900090 (deep dark purple)
-Text color: gold
+Text color and grid lines: gold
 and should look and fill medieval
 
 Important: the final result will be printed on A4 paper, each grid should be in an easy-to-cut A6 format
