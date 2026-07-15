@@ -25,7 +25,7 @@ body {
     /* Layer texture over the purple background and blend them */
     background:
         url('/src/assets/paper_rotated.webp'),
-        #5e005e;
+        #900090;
     background-size: cover, auto;
     background-blend-mode: overlay; /* Changed to overlay for a balanced look */
     border: 3px solid #FFD700;
