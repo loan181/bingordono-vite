@@ -59,7 +59,7 @@ body {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
     grid-template-rows: 1.2fr 1fr 1fr 1.2fr;
-    border: 2px solid var(--text-color);
+    border: 1px solid var(--text-color);
     aspect-ratio: 1 / 1;
 }
 
@@ -82,7 +82,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border: none;
+    border: 1px solid var(--text-color);
 }
 
 .verse {
