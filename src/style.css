@@ -70,7 +70,8 @@ body {
     text-align: center;
     padding: 0.3125rem;
     font-size: 1.125rem;
-    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
     text-shadow: 1px 1px 2px black;
 }
 
@@ -129,12 +130,18 @@ body {
         print-color-adjust: exact;
     }
 
+    .bingo-grid-4x4 {
+        width: 90mm;
+        height: 90mm;
+        border-color: var(--text-color) !important;
+    }
+
     .bingo-grid-4x4, .bingo-cell {
         border-color: var(--text-color) !important;
     }
 
     .bingo-cell {
-        font-size: 11pt;
+        font-size: 10pt;
         text-shadow: 1px 1px 2px black;
     }
 
