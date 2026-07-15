@@ -12,6 +12,7 @@ Alpine.data('bingoApp', () => ({
     wordsPools: {},
     versePool: [],
     grids: [],
+    gridCount: 4,
 
     init() {
         for (const path in verses) {

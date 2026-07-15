@@ -10,7 +10,9 @@
 <body x-data="bingoApp()" x-init="init()">
 
 <div class="control-panel no-print">
-    <button @click="generateGrids(4)">Générer 4 grilles</button>
+    <label for="grid-count">Nombre de grilles:</label>
+    <input type="number" id="grid-count" x-model.number="gridCount" min="1" max="1000">
+    <button @click="generateGrids(gridCount)">Générer</button>
     <button @click="window.print()" :disabled="grids.length === 0">Imprimer</button>
 </div>
 
