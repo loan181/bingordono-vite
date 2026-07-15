@@ -73,8 +73,9 @@ body {
 .center-block {
     grid-column: 2 / 4;
     grid-row: 2 / 4;
-    background-image: url('/src/assets/logo.png');
-    background-size: cover;
+    background-image: url('/src/assets/logo_no-bg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     border: none;
 }
@@ -134,7 +135,8 @@ body {
         text-shadow: 1px 1px 2px black;
     }
     .center-block {
-        background-image: url('/src/assets/logo.png') !important;
+        background-image: url('/src/assets/logo_no-bg.png') !important;
+        background-repeat: no-repeat;
         -webkit-print-color-adjust: exact;
     }
     .verse {
