@@ -34,11 +34,12 @@ Alpine.data('bingoApp', () => ({
         for (let i = 0; i < count; i++) {
             let cardWords = [];
             const category_occurence = {
-                'words_compendium': 3,
-                'words_gordonno': 3,
+                'words_compendium': 2,
+                'words_gordonno': 2,
                 'words_religion': 2,
                 'words_generic_larp': 2,
-                'words_music': 2
+                'words_music': 2,
+                'words_action': 2,
             }
             let sum = 0;
             for (const category in category_occurence) {
