@@ -51,8 +51,8 @@ body {
 
 .bingo-grid-4x4 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    grid-template-rows: 1.2fr 1fr 1fr 1.2fr;
     border: 2px solid #FFD700;
     aspect-ratio: 1 / 1;
 }
