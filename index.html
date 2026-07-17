@@ -17,6 +17,7 @@
     <input type="number" id="grid-count" x-model.number="gridCount" min="1" max="1000">
     <button @click="generateGrids(gridCount)">Générer</button>
     <button @click="window.print()" :disabled="grids.length === 0">Imprimer</button>
+    <a href="./wordlist.html" style="font-family:inherit;color:inherit;border:1px solid #8a6c5a;padding:0.4rem 0.8rem;text-decoration:none;font-size:0.9rem;">📜 Liste des mots</a>
 </div>
 
 <div id="bingo-container">
