@@ -23,7 +23,9 @@
             <div class="bingo-grid-4x4">
                 <template x-for="(word, i) in grid.words" :key="i">
                     <div class="bingo-cell" :style="getGridArea(i)">
-                        <span x-text="word"></span>
+                        <div class="cell-content">
+                            <span x-text="word"></span>
+                        </div>
                     </div>
                 </template>
                 <div class="center-block">
