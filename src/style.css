@@ -59,14 +59,8 @@ body {
 
 .bingo-cell {
     border: 1px solid var(--text-color);
-    position: relative;
     min-height: 0;
     min-width: 0;
-}
-
-.cell-content {
-    position: absolute;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,6 +125,7 @@ body {
         background: radial-gradient(ellipse at 30% 20%, #b000b0 0%, #700070 60%, #500050 100%) !important;
         border-color: var(--text-color) !important;
         color: var(--text-color) !important;
+        box-shadow: none;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
         overflow: hidden;
@@ -150,9 +145,6 @@ body {
     .bingo-cell {
         min-height: 0;
         min-width: 0;
-    }
-
-    .cell-content {
         font-size: 10pt;
     }
 

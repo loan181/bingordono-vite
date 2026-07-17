@@ -25,11 +25,7 @@
             <div class="bingo-card-header" x-text="'BinGordono #' + (gridIndex + 1)"></div>
             <div class="bingo-grid-4x4">
                 <template x-for="(word, i) in grid.words" :key="i">
-                    <div class="bingo-cell" :style="getGridArea(i)">
-                        <div class="cell-content">
-                            <span x-text="word"></span>
-                        </div>
-                    </div>
+                    <div class="bingo-cell" :style="getGridArea(i)" x-text="word"></div>
                 </template>
                 <div class="center-block">
                     <img src="/src/assets/logo_no-bg.png" alt="Logo Gordono">
