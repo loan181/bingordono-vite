@@ -122,13 +122,13 @@ body {
     #bingo-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
         width: 210mm;
-        height: 297mm;
         gap: 0;
     }
 
     .bingo-card {
+        width: 105mm;
+        height: 148.5mm;
         background: url('/src/assets/paper_rotated.webp') var(--primary-color) !important;
         background-size: cover !important;
         background-blend-mode: overlay !important;
@@ -136,6 +136,7 @@ body {
         color: var(--text-color) !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        overflow: hidden;
     }
 
     .bingo-grid-4x4 {
