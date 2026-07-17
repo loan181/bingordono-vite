@@ -31,12 +31,10 @@ body {
 }
 
 .bingo-card {
-    background: url('/src/assets/paper_rotated.webp') var(--primary-color);
-    background-size: cover;
-    background-blend-mode: overlay;
+    background: radial-gradient(ellipse at 30% 20%, #b000b0 0%, #700070 60%, #500050 100%);
     border: 3px solid var(--text-color);
     padding: 1rem;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3), inset 0 0 40px rgba(0,0,0,0.3);
     color: var(--text-color);
     box-sizing: border-box;
     page-break-inside: avoid;
@@ -129,9 +127,7 @@ body {
     .bingo-card {
         width: 105mm;
         height: 148.5mm;
-        background: url('/src/assets/paper_rotated.webp') var(--primary-color) !important;
-        background-size: cover !important;
-        background-blend-mode: overlay !important;
+        background: radial-gradient(ellipse at 30% 20%, #b000b0 0%, #700070 60%, #500050 100%) !important;
         border-color: var(--text-color) !important;
         color: var(--text-color) !important;
         -webkit-print-color-adjust: exact;
