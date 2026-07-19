@@ -1,6 +1,7 @@
 import Alpine from 'alpinejs';
 
 const lists = import.meta.glob('./wordlist/*.json', { eager: true });
+const verseLists = import.meta.glob('./verse/*.json', { eager: true });
 
 const CATEGORY_LABELS = {
     words_gordonno: '🟣 Gordonno',
@@ -13,10 +14,13 @@ const CATEGORY_LABELS = {
 
 Alpine.data('wordlistApp', () => ({
     categories: [],
+    verses: [],
     activeTab: 'all',
     search: '',
     filteredWords: [],
     totalCount: 0,
+    verseSearch: '',
+    filteredVerses: [],
 
     init() {
         for (const path in lists) {
@@ -28,10 +32,23 @@ Alpine.data('wordlistApp', () => ({
                 words,
             });
         }
-        // Sort by label for consistent order
         this.categories.sort((a, b) => a.label.localeCompare(b.label));
         this.totalCount = this.categories.reduce((sum, c) => sum + c.words.length, 0);
         this.updateWords();
+
+        for (const path in verseLists) {
+            const follower = path.split('/').pop().replace('.json', '').replace('verse_', '');
+            const followerLabel = follower.charAt(0).toUpperCase() + follower.slice(1);
+            const lines = verseLists[path].default;
+            lines.forEach((text, i) => {
+                this.verses.push({
+                    text,
+                    follower: followerLabel,
+                    ref: `Livre de ${followerLabel}, verset ${i + 1}`,
+                });
+            });
+        }
+        this.filteredVerses = [...this.verses];
     },
 
     get activeCategory() {
@@ -46,6 +63,13 @@ Alpine.data('wordlistApp', () => ({
 
     onSearch() {
         this.updateWords();
+    },
+
+    onVerseSearch() {
+        const q = this.verseSearch.trim().toLowerCase();
+        this.filteredVerses = q
+            ? this.verses.filter(v => v.text.toLowerCase().includes(q) || v.ref.toLowerCase().includes(q))
+            : [...this.verses];
     },
 
     updateWords() {

@@ -173,6 +173,85 @@
             margin-bottom: 1.5rem;
             font-family: sans-serif;
         }
+
+        /* Verse section */
+        .section-divider {
+            text-align: center;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin: 3rem 0 0.5rem;
+            color: var(--text-color);
+            text-shadow: 0 0 16px rgba(255,215,0,0.4);
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: ' ✦ ';
+            opacity: 0.5;
+        }
+
+        .verse-search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .verse-search-bar input {
+            font-family: var(--font-family-main);
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .verse-search-bar input::placeholder { color: var(--muted); }
+        .verse-search-bar input:focus { background: rgba(255,215,0,0.08); }
+
+        .verse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.8rem;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+        }
+
+        .verse-card {
+            background: radial-gradient(ellipse at 30% 20%, #5a0070 0%, #3a0050 60%, #250035 100%);
+            border: 1px solid var(--border-color);
+            padding: 0.9rem 1.1rem;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .verse-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 2px 6px 16px rgba(0,0,0,0.5);
+        }
+
+        .verse-card.highlight {
+            border-color: #ffdd00;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        .verse-text {
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .verse-ref {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-align: right;
+            font-family: sans-serif;
+            letter-spacing: 0.03em;
+        }
     </style>
 </head>
 <body x-data="wordlistApp()">
@@ -228,6 +307,32 @@
         </template>
         <div class="empty-state" x-show="filteredWords.length === 0">
             Aucun mot trouvé pour "<span x-text="search"></span>"
+        </div>
+    </div>
+
+    <!-- Verses section -->
+    <div class="section-divider">Versets Sacrés</div>
+    <p style="text-align:center;color:var(--muted);font-size:0.8rem;margin:0 0 1rem;font-family:sans-serif;"
+       x-text="verses.length + ' versets'"></p>
+
+    <div class="verse-search-bar">
+        <input
+            type="text"
+            x-model="verseSearch"
+            placeholder="Chercher un verset..."
+            @input="onVerseSearch()"
+        />
+    </div>
+
+    <div class="verse-grid">
+        <template x-for="(verse, i) in filteredVerses" :key="i">
+            <div class="verse-card" :class="{ highlight: verseSearch.trim().length > 0 }">
+                <div class="verse-text" x-text="'« ' + verse.text + ' »'"></div>
+                <div class="verse-ref" x-text="verse.ref"></div>
+            </div>
+        </template>
+        <div class="empty-state" x-show="filteredVerses.length === 0">
+            Aucun verset trouvé pour "<span x-text="verseSearch"></span>"
         </div>
     </div>
 
