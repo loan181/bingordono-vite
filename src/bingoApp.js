@@ -38,27 +38,41 @@ Alpine.data('bingoApp', () => ({
         }
     },
 
+    // Fixed category per grid position (indices match getGridArea):
+    //   top row    → [✝ religion] [⚔ larp] [⚔ larp] [✝ religion]
+    //   side rows  → [📜 compendium] … [📜 compendium]
+    //                [🟣 gordonno]  … [🟣 gordonno]
+    //   bottom row → [🙏 action] [🎶 music] [🎶 music] [🙏 action]
+    positionLayout: [
+        'words_religion',     // 0  top-left
+        'words_generic_larp', // 1  top-2nd
+        'words_generic_larp', // 2  top-3rd
+        'words_religion',     // 3  top-right
+        'words_compendium',   // 4  mid-left  (row 2)
+        'words_compendium',   // 5  mid-right (row 2)
+        'words_gordonno',     // 6  mid-left  (row 3)
+        'words_gordonno',     // 7  mid-right (row 3)
+        'words_action',       // 8  bottom-left  corner
+        'words_music',        // 9  bottom-2nd
+        'words_music',        // 10 bottom-3rd
+        'words_action',       // 11 bottom-right corner
+    ],
+
     generateGrids(count) {
         this.grids = [];
         for (let i = 0; i < count; i++) {
-            let cardWords = [];
-            const category_occurence = {
-                'words_compendium': 2,
-                'words_gordonno': 2,
-                'words_religion': 2,
-                'words_generic_larp': 2,
-                'words_music': 2,
-                'words_action': 2,
+            // Build a shuffled pool per category so no word repeats within a grid
+            const pools = {};
+            for (const category of new Set(this.positionLayout)) {
+                pools[category] = [...this.wordsPools[category] ?? []].sort(() => 0.5 - Math.random());
             }
-            let sum = 0;
-            for (const category in category_occurence) {
-                this.addWords(cardWords, category, category_occurence[category]);
-                sum += category_occurence[category];
-            }
-            if (sum !== 12) {
-                console.warn("The occurence of categories does not match the number of bingo cells");
-            }
-            
+
+            const cardWords = this.positionLayout.map(category => {
+                const word = pools[category].pop() ?? '?';
+                const emoji = categoryEmojis[category] ?? '';
+                return emoji ? `${emoji} ${word}` : word;
+            });
+
             const randomFollower = this.versePool[Math.floor(Math.random() * this.versePool.length)];
             const verseIndex = Math.floor(Math.random() * randomFollower.verses.length);
             const verseText = randomFollower.verses[verseIndex];
@@ -67,23 +81,9 @@ Alpine.data('bingoApp', () => ({
             const verseAttribution = `${randomFollower.follower} ${chapter}:${verse}`;
 
             this.grids.push({
-                words: cardWords.sort(() => 0.5 - Math.random()), // Shuffle the final word list
+                words: cardWords,
                 verse: `"${verseText}" - ${verseAttribution}`
             });
-        }
-    },
-
-    addWords(cardWords, category, count) {
-        const pool = this.wordsPools[category];
-        const emoji = categoryEmojis[category] ?? '';
-        if (pool && pool.length > 0) {
-            let shuffled = [...pool].sort(() => 0.5 - Math.random());
-            for (let i = 0; i < count; i++) {
-                if (shuffled.length > 0) {
-                    const word = shuffled.pop();
-                    cardWords.push(emoji ? `${emoji} ${word}` : word);
-                }
-            }
         }
     },
 
