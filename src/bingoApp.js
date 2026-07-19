@@ -7,6 +7,15 @@ function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+const categoryEmojis = {
+    'words_action':       '🙏',
+    'words_music':        '🎶',
+    'words_compendium':   '📜',
+    'words_generic_larp': '⚔',
+    'words_religion':     '✝',
+    'words_gordonno':     '🟣',
+};
+
 Alpine.data('bingoApp', () => ({
     grid_size: 4,
     wordsPools: {},
@@ -66,11 +75,13 @@ Alpine.data('bingoApp', () => ({
 
     addWords(cardWords, category, count) {
         const pool = this.wordsPools[category];
+        const emoji = categoryEmojis[category] ?? '';
         if (pool && pool.length > 0) {
             let shuffled = [...pool].sort(() => 0.5 - Math.random());
             for (let i = 0; i < count; i++) {
                 if (shuffled.length > 0) {
-                    cardWords.push(shuffled.pop());
+                    const word = shuffled.pop();
+                    cardWords.push(emoji ? `${emoji} ${word}` : word);
                 }
             }
         }
