@@ -20,6 +20,50 @@ body {
     border: 2px solid var(--border-color);
     margin-bottom: 1.25rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.control-panel label {
+    font-family: var(--font-family-main);
+    color: var(--dark-text-color);
+}
+
+.control-panel input[type="number"] {
+    font-family: var(--font-family-main);
+    color: var(--dark-text-color);
+    background: rgba(255, 255, 240, 0.9);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    width: 5rem;
+}
+
+.control-panel button,
+.control-panel a.btn {
+    font-family: var(--font-family-main);
+    color: var(--dark-text-color);
+    background: rgba(239, 229, 212, 0.9);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.control-panel button:hover:not(:disabled),
+.control-panel a.btn:hover {
+    background: rgba(220, 200, 170, 0.95);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.control-panel button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
 #bingo-container {
