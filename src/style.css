@@ -153,19 +153,19 @@ body {
 
     @page {
         size: A4;
-        margin: 0;
+        margin: 0.6cm;
     }
 
     #bingo-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        width: 210mm;
+        width: 100%;
         gap: 0;
     }
 
     .bingo-card {
-        width: 105mm;
-        height: 148.5mm;
+        width: 100%;
+        height: 142.5mm;
         background: radial-gradient(ellipse at 30% 20%, #b000b0 0%, #700070 60%, #500050 100%) !important;
         border-color: var(--text-color) !important;
         color: var(--text-color) !important;
