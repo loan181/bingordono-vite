@@ -7,14 +7,6 @@ function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
-const categoryEmojis = {
-    'words_action':       '🙏',
-    'words_music':        '🎶',
-    'words_compendium':   '📜',
-    'words_generic_larp': '⚔',
-    'words_religion':     '✝',
-    'words_gordonno':     '🟣',
-};
 
 Alpine.data('bingoApp', () => ({
     grid_size: 4,
@@ -68,9 +60,7 @@ Alpine.data('bingoApp', () => ({
             }
 
             const cardWords = this.positionLayout.map(category => {
-                const word = pools[category].pop() ?? '?';
-                const emoji = categoryEmojis[category] ?? '';
-                return emoji ? `${emoji} ${word}` : word;
+                return pools[category].pop() ?? '?';
             });
 
             const randomFollower = this.versePool[Math.floor(Math.random() * this.versePool.length)];
